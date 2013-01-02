@@ -4,8 +4,8 @@ $:.push('lib')
 
 Gem::Specification.new do |s|
   s.name     = "mini-marvin"
-  s.version  = "0.0.4"
-  s.date     = "2012-06-25"
+  s.version  = "0.0.42"
+  s.date     = "2013-01-03"
   s.summary  = "Marvin, the simple irc notifier"
   s.email    = "leklund@gmail.com"
   s.homepage = "https://github.com/leklund/mini-marvin"
