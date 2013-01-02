@@ -1,0 +1,9 @@
+Mini Marvin - a simple IRC notifier with a brain the size of a planet.
+
+Example:
+
+  Marvin.boot({:server => 'hostname',  :port => '6667', :password => 'password', :ssl => true, :nick => 'marv'}) do |bot|
+    bot.notify("#channel", "message")
+  end
+
+
