@@ -1,9 +1,17 @@
-Mini Marvin - a simple IRC notifier with a brain the size of a planet.
+Mini Marvin - a simple IRC notifier in ruby with a brain the size of a planet.
 
 Example:
 
   MiniMarvin.loathing({:server => 'hostname',  :port => '6667', :password => 'password', :ssl => true, :nick => 'marv'}) do |paranoid_android|
-   paranoid_android.notify("#heartofgold", "this will all end in tears")
+   paranoid_android.gripe("#heartofgold", "this will all end in tears")
   end
 
+The gripe method takes an options hash. The only available option is 'join' which if true, will
+join the channel before sending the notice. This is required for channels that have '+n' set.
 
+  paranoid_android.gripe("#heartofgold", "this will all end in tears", {:join => true})
+
+Why?
+
+Works great for deploy notifications with capistrano or other occasional irc notifications
+for which you don't need a bot always running.

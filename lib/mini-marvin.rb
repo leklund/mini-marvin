@@ -8,8 +8,11 @@ MiniMarvin - a very, very simple IRC notifier with a brain the size of a planet.
 Example:
 
   MiniMarvin.loathing({:server => 'hostname',  :port => '6667', :password => 'password', :ssl => true, :nick => 'marv'}) do |paranoid_android|
-   paranoid_android.notify("#heartofgold", "this will all end in tears")
+   paranoid_android.gripe("#heartofgold", "this will all end in tears")
   end
+
+The gripe method takes an options hash. The only available option is 'join' which if true, will
+join the channel before sending the notice. This is required for channels that have '+n' set.
 
 =end
 
@@ -49,10 +52,12 @@ class MiniMarvin
     @socket.gets until @socket.eof?
   end
 
-  def notify(channels, message)
+  def gripe(channels, message, options={})
     channels = [channels] unless channels.kind_of?(Array)
     channels.each do |chan|
+      @socket.puts "JOIN #{chan}" if options[:join]
       @socket.puts "NOTICE #{chan} :#{message}"
+      @socket.puts "PART #{chan}" if options[:join]
     end
   end
 end
